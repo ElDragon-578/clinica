@@ -2,7 +2,8 @@ import express from "express"
 import cors from "cors"
 import dotenv from "dotenv"
 
-import { requestVistas, sumarVistas } from "./controllers/indexController.js"
+import { requestVistas, sumarVistas } from "./backend/controllers/indexController.js"
+import { saveSignUp } from "./backend/controllers/signUpController.js"
 
 dotenv.config()
 
@@ -15,6 +16,7 @@ app.use(express.json())
 
 app.get("/requestVistas", requestVistas)
 app.post("/sumarVistas",  sumarVistas)
+app.post("/api/saveSignUp", saveSignUp)
 
 app.use((err, req, res)=>{
     console.log(err.stack)

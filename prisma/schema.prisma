@@ -17,3 +17,46 @@ model vistas{
   id Int @id @default(autoincrement())
   cantidad Int
 }
+
+model usuario{
+  idUsuario Int @id @default(autoincrement())
+  nombre String
+  contrasenia String
+  permisos String @default("user")
+  rol RolUsuario @default(paciente)
+  paciente paciente?
+  doctor doctor?
+  otro otro?
+}
+
+model paciente{
+  idPaciente Int @id @default(autoincrement())
+  idUsuario_FK Int @unique
+  nombre String
+  apellido String
+  telefono String
+  direccion String
+  fechaNac String
+  cedula String
+  usuario usuario @relation(fields: [idUsuario_FK], references: [idUsuario])
+}
+
+model doctor{
+  idDoctor Int @id @default(autoincrement())
+  idUsuario_FK Int @unique
+  usuario usuario @relation(fields: [idUsuario_FK], references: [idUsuario])
+}
+
+model otro{
+  idOtro Int @id @default(autoincrement())
+  idUsuario_FK Int @unique
+  ususario usuario @relation(fields: [idUsuario_FK], references: [idUsuario])
+}
+
+enum RolUsuario{
+  paciente
+  doctor
+  enfermera
+  auxiliar
+  otro
+}
