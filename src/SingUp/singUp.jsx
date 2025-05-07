@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
 
+import { NavBar } from "../components/navBar";
+
 const datosPersonal = [
   {
     id: 0,
@@ -86,25 +88,37 @@ export function SingUp() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) =>{
-    e.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    try{
-        await axios.post("http://localhost:3000/api/saveSignUp", formData)
-    }catch (err){
-        console.log(err)
+    try {
+      await axios.post("http://localhost:3000/api/saveSignUp", formData);
+    } catch (err) {
+      console.log(err);
     }
-  }
+  };
 
   return (
     <>
-      <h1>Registro Personal</h1>
-      <span>
-        Recuerde que la informacion que ingrese en este sera usada para
-        registros medicos futuros
-      </span>
-      <form action="" className="w-full" onSubmit={handleSubmit}>
-        <div>
+      <NavBar />
+      <div className="w-full place-content-center place-items-center pt-20">
+        <h1 className="text-4xl">
+          Registro
+        </h1>
+      </div>
+      <form
+        action=""
+        className="max-w-[95%] w-full h-auto min-h-[400px] flex flex-col place-items-center m-6 p-6 border rounded-2xl shadow-xl"
+        onSubmit={handleSubmit}
+      >
+        <div className="w-full h-auto place-content-center place-items-center">
+          <h1 className="text-2xl">Registro Personal</h1>
+          <span className="">
+            Recuerde que la informacion que ingrese en este sera usada para
+            registros medicos futuros
+          </span>
+        </div>
+        <div className="max-w-[95%] w-full h-auto min-h-[400px] m-6 p-6 border rounded-2xl shadow-xl">
           {datosPersonal.map((dato) => (
             <div key={dato.id} className="w-full">
               <label htmlFor={dato.name}>{dato.content}</label>
@@ -113,19 +127,22 @@ export function SingUp() {
                 id={dato.name}
                 name={dato.name}
                 placeholder={dato.placeHolder}
-                className="w-full"
+                className="w-full h-8 border border-[#332B2B] rounded-lg p-2 mb-2"
                 value={formData[dato.name]}
                 onChange={handleChange}
               />
             </div>
           ))}
         </div>
-        <h1 className="w-full pt-2">Registro Usuario</h1>
-        <span className="w-full pb-2">
+        <div className="w-full h-auto place-content-center place-items-center">
+        <h1 className="text-2xl">Registro Usuario</h1>
+        <span className="">
           Dentro de estos campos estaran tus datos de ingreso ten cuidado de no
           perderlos
         </span>
-        <div>
+
+        </div>
+        <div className="max-w-[95%] w-full h-auto min-h-[200px] m-6 p-6 border rounded-2xl shadow-xl">
           {datosUsuario.map((dato) => (
             <div key={dato.id} className="w-full">
               <label htmlFor={dato.name}>{dato.content}</label>
@@ -134,14 +151,19 @@ export function SingUp() {
                 id={dato.name}
                 name={dato.name}
                 placeholder={dato.placeHolder}
-                className="w-full"
+                className="w-full h-8 border border-[#332B2B] rounded-lg p-2 mb-2"
                 value={formData[dato.name]}
                 onChange={handleChange}
               />
             </div>
           ))}
         </div>
-        <button type="submit" className="w-full h-12 p-2 bg-[#01C9FF] text-white rounded-xl duration-300 ease-in-out hover:bg-[#9B3A34] hover:scale-[103%]">Enviar</button>
+        <button
+          type="submit"
+          className="w-1/2 h-12 p-2 bg-[#01C9FF] text-white rounded-xl duration-300 ease-in-out hover:bg-[#3991AA] hover:scale-[103%]"
+        >
+          Enviar
+        </button>
       </form>
     </>
   );

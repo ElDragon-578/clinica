@@ -16,8 +16,6 @@ export function Index(){
                 const response = await axios.get("http://localhost:3000/requestVistas")
     
                 setVisitas(response.data[0].cantidad)
-    
-                console.log("Nose como pero salio todo bien", response.data[0].cantidad)
             }catch(err){
                 console.log("Algo salio mal con el request", err)
             }

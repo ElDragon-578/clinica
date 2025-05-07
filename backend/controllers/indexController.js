@@ -1,13 +1,11 @@
-import pkg from '@prisma/client';
-const {PrismaClient} = pkg
+import {PrismaClient} from '@prisma/client';
+
 
 const prisma = new PrismaClient()
 
 export const requestVistas = async(req, res) =>{
     try{
         const result = await prisma.vistas.findMany()
-
-        console.log(result)
 
         res.status(200).json(result)
     }catch (error){
@@ -36,9 +34,9 @@ export const sumarVistas = async (req, res) => {
         data: { cantidad: nuevaCantidad },
       })
   
-      res.status(200).json({ cantidad: nuevaCantidad })
+      return res.status(200).json({ cantidad: nuevaCantidad })
     } catch (error) {
       console.error("Error al sumar visita", error)
-      res.status(500).json({ error: "No se pudo sumar la visita" })
+      return res.status(500).json({ error: "No se pudo sumar la visita" })
     }
   }
