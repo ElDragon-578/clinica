@@ -31,7 +31,7 @@ export function Index(){
             <NavBar></NavBar>
             <Header></Header>
             <div className="w-full h-auto flex flex-col justify-center place-items-center m-2">
-                <p className="w-[50%] p-2 my-2 text-center bg-black border border-gray-400 text-white rounded-2xl">Visistas: {visitas}</p>
+                <p className="w-[50%] p-2 my-2 text-center bg-black border border-gray-400 text-white rounded-2xl">Visitas: {visitas}</p>
             </div>
         </>
     )

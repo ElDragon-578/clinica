@@ -5,7 +5,7 @@ export function NavBar(){
                 <a href="/"><img src="./LOGO.webp" alt="" className="w-10 h-10 rounded-4xl"/></a>
                 <div className="">
                     <a href="/SignUp" className="m-2 text-[#2B3133]">Registrarse</a>
-                    <a href="/LogIn" className="m-2 text-[#2B3133]">Iniciar Sesion</a>
+                    <a href="/LogIn" className="m-2 text-[#2B3133]">Iniciar Sesión</a>
                 </div>
             </nav>
         </>

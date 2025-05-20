@@ -16,6 +16,14 @@ export const saveSignUp = async(req, res) => {
 
 
     try{
+        const certificationUser = await prisma.usuario.findFirst({
+            where: {nombre: nombreUsuario}
+        })
+
+        if(certificationUser){
+            return res.status(200).json({message: "El usuario ya existe", color: "bg-red-500"})
+        }
+
         const resultUser = await prisma.usuario.create({
             data: {
                 nombre: nombreUsuario,

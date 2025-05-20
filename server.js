@@ -5,6 +5,8 @@ import dotenv from "dotenv"
 import { requestVistas, sumarVistas } from "./backend/controllers/indexController.js"
 import { saveSignUp } from "./backend/controllers/signUpController.js"
 import { requestLogIn } from "./backend/controllers/LoginController.js"
+import {isAdmin} from "./middleware/isAdmin.js"
+import { authAdmin } from "./backend/controllers/authController.js"
 
 dotenv.config()
 
@@ -16,9 +18,13 @@ app.use(cors())
 app.use(express.json())
 
 app.get("/requestVistas", requestVistas)
+app.use('/dashboard', isAdmin, (req, res) => {
+  res.json({ message: `Bienvenido, ${req.usuario.email}` });
+})
 app.post("/sumarVistas",  sumarVistas)
 app.post("/api/saveSignUp", saveSignUp)
 app.post("/api/Login", requestLogIn)
+app.post("/api/authAdmin", authAdmin)
 
 app.use((err, req, res, next)=>{
     console.error(err)

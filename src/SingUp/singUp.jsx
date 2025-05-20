@@ -83,6 +83,7 @@ export function SingUp() {
     nombreUsuario: "",
     contrasenia: "",
   });
+  const [result, setResult] = useState(null)
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -92,7 +93,9 @@ export function SingUp() {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:3000/api/saveSignUp", formData);
+      const result = await axios.post("http://localhost:3000/api/saveSignUp", formData);
+
+      setResult(result)
     } catch (err) {
       console.log(err);
     }
@@ -158,6 +161,9 @@ export function SingUp() {
             </div>
           ))}
         </div>
+        {
+          result && <p className={`w-full h-auto text-center ${result.data.color} text-white mb-2 rounded-xl`}>{result.data.message}</p>
+        }
         <button
           type="submit"
           className="w-1/2 h-12 p-2 bg-[#01C9FF] text-white rounded-xl duration-300 ease-in-out hover:bg-[#3991AA] hover:scale-[103%]"

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { NavBar } from "../components/navBar";
+import { useNavigate } from "react-router-dom";
 
 const datosLogin = [
   {
@@ -25,6 +26,8 @@ export function Login() {
     contrasenia: "",
   });
 
+  const navigate = useNavigate()
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -38,19 +41,26 @@ export function Login() {
         formData
       );
 
-      console.log(response.data.message);
-
       if (response.data.success) {
         console.log("sesion iniciada con exito");
       }
+
+      const {data} = await axios.post("http://localhost:3000/api/authAdmin", formData)
+
+      localStorage.setItem('token', data.token)
+      if(data.permisos ==='admin'){
+        navigate('/Admin')
+      }else{
+        navigate('/')
+      }
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
   return (
     <>
     <NavBar/>
-    <h1 className="w-full h-auto flex place-content-center place-items-center text-6xl pt-20">Clinica Generica</h1>
+    <h1 className="w-full h-auto flex place-content-center place-items-center text-6xl pt-20 mb-2">Clínica Genérica</h1>
     <div className="w-full h-auto flex place-content-center place-items-center">
       <form
         action=""
