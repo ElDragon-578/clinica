@@ -53,6 +53,15 @@ model otro{
   ususario usuario @relation(fields: [idUsuario_FK], references: [idUsuario])
 }
 
+model citas{
+  idCita Int @id @default(autoincrement())
+  strat DateTime
+  end DateTime
+  horaInicio String
+  horaFin String
+  title String
+}
+
 enum RolUsuario{
   paciente
   doctor

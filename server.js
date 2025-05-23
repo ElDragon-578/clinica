@@ -7,6 +7,8 @@ import { saveSignUp } from "./backend/controllers/signUpController.js"
 import { requestLogIn } from "./backend/controllers/LoginController.js"
 import {isAdmin} from "./middleware/isAdmin.js"
 import { authAdmin } from "./backend/controllers/authController.js"
+import { citasReq } from "./backend/controllers/citasReq.js"
+import { crearCitas } from "./backend/controllers/crearCitas.js"
 
 dotenv.config()
 
@@ -25,6 +27,8 @@ app.post("/sumarVistas",  sumarVistas)
 app.post("/api/saveSignUp", saveSignUp)
 app.post("/api/Login", requestLogIn)
 app.post("/api/authAdmin", authAdmin)
+app.get("/api/citasReq", citasReq)
+app.post("/api/crearCitas", crearCitas)
 
 app.use((err, req, res, next)=>{
     console.error(err)

@@ -51,7 +51,7 @@ export function Login() {
       if(data.permisos ==='admin'){
         navigate('/Admin')
       }else{
-        navigate('/')
+        navigate('/Calender')
       }
     } catch (err) {
       console.error(err);
