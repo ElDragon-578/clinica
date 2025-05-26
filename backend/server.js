@@ -2,13 +2,13 @@ import express from "express"
 import cors from "cors"
 import dotenv from "dotenv"
 
-import { requestVistas, sumarVistas } from "./backend/controllers/indexController.js"
-import { saveSignUp } from "./backend/controllers/signUpController.js"
-import { requestLogIn } from "./backend/controllers/LoginController.js"
+import { requestVistas, sumarVistas } from "./controllers/indexController.js"
+import { saveSignUp } from "./controllers/signUpController.js"
+import { requestLogIn } from "./controllers/LoginController.js"
 import {isAdmin} from "./middleware/isAdmin.js"
-import { authAdmin } from "./backend/controllers/authController.js"
-import { citasReq } from "./backend/controllers/citasReq.js"
-import { crearCitas } from "./backend/controllers/crearCitas.js"
+import { authAdmin } from "./controllers/authController.js"
+import { citasReq } from "./controllers/citasReq.js"
+import { crearCitas } from "./controllers/crearCitas.js"
 
 dotenv.config()
 
